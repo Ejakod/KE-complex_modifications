@@ -1,0 +1,143 @@
+{
+  "title": "Double-tap Option key to copy, Command key to paste",
+  "rules": [
+    {
+      "description": "Double-tap Option key to copy",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_option",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "double_tap_option_lock",
+              "value": 1
+            },
+            {
+              "type": "event_if",
+              "value": 300,
+              "modifiers": {
+                "optional": [
+                  "any"
+                ]
+              },
+              "event_type": "single",
+              "event_symbol": "left_option"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_option",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "double_tap_option_lock",
+                "value": 1
+              }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "double_tap_option_lock",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Double-tap Command key to paste",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "double_tap_command_lock",
+              "value": 1
+            },
+            {
+              "type": "event_if",
+              "value": 300,
+              "modifiers": {
+                "optional": [
+                  "any"
+                ]
+              },
+              "event_type": "single",
+              "event_symbol": "left_command"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "double_tap_command_lock",
+                "value": 1
+              }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "double_tap_command_lock",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
